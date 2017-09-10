@@ -34,12 +34,12 @@ int main()
 
 	settings.Open( FILE_PATH );
 
-	// ToDo: If cannot find return default - if still cannot find then return noting.
-	LOG_INFO( "WINDOW, SIZE_X, ", settings.Get( "WINDOW", "SIZE_X" ).value().get() );
-	LOG_INFO( "WINDOW, SIZE_Y, ", settings.Get( "WINDOW", "SIZE_Y" ).value().get() );
+	LOG_INFO( "[WINDOW] SIZE_X = ", settings.Get( "WINDOW", "SIZE_X" ).value().get() );
+	LOG_INFO( "[WINDOW] SIZE_Y = ", settings.Get( "WINDOW", "SIZE_Y" ).value().get() );
+	LOG_INFO( "[WINDOW] FPS = ", settings.Get( "WINDOW", "FPS" ).value().get() );
 	LOG_INFO( "Press ENTER to delete test file ", FILE_PATH );
 
 	settings.Save();
 	std::cin.get();
-	//std::experimental::filesystem::remove( { FILE_PATH } );
+	std::experimental::filesystem::remove( { FILE_PATH } );
 }

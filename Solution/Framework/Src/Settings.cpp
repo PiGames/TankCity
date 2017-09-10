@@ -23,7 +23,7 @@ bool Settings::AddDefault( const record_t& record )
 		return false;
 
 	this->defaultSettings.push_back( record );
-	LOG_INFO( "Default settings added: ", record.section, ", ", record.name, ", ", record.value );
+	LOG_INFO( "Add default setting [", record.section, "] ", record.name, " = ", record.value );
 
 	return true;
 }
@@ -58,13 +58,12 @@ std::optional<stringRef_t> Settings::GetDefault( const std::string& section, con
 
 bool Settings::Open( const std::string& path )
 {
-	if ( const auto ok = this->cfgFile.Open( path ); !ok )
-		return false;
+	this->cfgFile.Open( path );
 
 	this->cfgFile.Parse();
 
 	if ( !this->defaultSettings.empty() ) {
-		if ( Expects( !this->checkIfMatchesDefault() ).Failed() )
+		if ( !this->checkIfMatchesDefault() )
 			this->generateDefault();
 	}
 

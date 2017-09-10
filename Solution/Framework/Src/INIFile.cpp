@@ -21,39 +21,35 @@ namespace con
 bool INIFile::Open( const std::string& name )
 {
 	std::fstream file( name );
-	
-	if ( !file ) {
-		LOG_ERROR( "Cannot open INIFile: ", name );
-		return false;
-	}
 
 	this->Clear();
 	this->pathToFile = name;
 
 	std::string line = "";
-	while ( !file.eof() ) {
-		std::getline( file, line );
+	while ( std::getline( file, line ) ) {
 		if ( line.empty() ) // don't want empty lines
 			continue;
 
 		this->rawData.push_back( line );
 	}
 
-	Ensures( !this->rawData.empty() );
+	if ( this->rawData.empty() )
+		LOG_WARN( "INIFile ", name, " is empty" );
 
 	return true;
 }
 
 bool INIFile::Save( const std::string& path, bool override )
 {
-	if ( Expects( !path.empty() && !this->parsedData.empty() ).Failed() ) {
+	if ( Expects( !this->pathToFile.empty() && !this->parsedData.empty() ).Failed() ) {
 		return false;
 	}
-	this->pathToFile = path;
+
+	if ( !path.empty() )
+		this->pathToFile = path;
 
 	std::vector<std::string> serializeData;
 	this->makeSerializeData( serializeData );
-
 
 	if ( std::experimental::filesystem::exists( "./" + path ) &&
 		 !override )

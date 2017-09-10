@@ -16,7 +16,6 @@ constexpr int16 STATE_PUSH = static_cast<int16>( frameworkMessages_t::STATE_PUSH
 constexpr int16 STATE_POP = static_cast<int16>( frameworkMessages_t::STATE_POP );
 constexpr int16 STATE_GET_ON_TOP = static_cast<int16>( frameworkMessages_t::STATE_GET_ON_TOP );
 
-
 void StateStack::Update()
 {
 	auto orderedMessages = this->getOrderedMessages();
