@@ -78,8 +78,8 @@ void INIFile::Parse()
 			continue;
 
 		tempString = str;
-		// Removing blank spaces before name and after value (   name = value   )
-		//													  ^^^            ^^^
+		// Removing blank spaces before name and after value (  name = value  )
+		//													 ^^^      ^^^
 		while ( tempString.front() == ' ' || tempString.front() == '\t' )
 			tempString.erase( tempString.begin() );
 		while ( tempString.back() == ' ' || tempString.back() == '\t' )
@@ -91,8 +91,8 @@ void INIFile::Parse()
 			name = str.substr( 0, str.find_first_of( '=' ) );
 			value = str.substr( str.find_first_of( '=' ) + 1 );
 
-			// Removing blank after before name and before value (name   =   value)
-			//														  ^^^ ^^^
+			// Removing blank after before name and before value (name  =  value)
+			//														 ^^^ ^^^
 			while ( name.back() == ' ' || name.back() == '\t' )
 				name.pop_back();
 			while ( value.front() == ' ' || value.front() == '\t' )

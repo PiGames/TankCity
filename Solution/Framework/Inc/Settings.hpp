@@ -12,7 +12,7 @@
 
 namespace con
 {
-/* Contains current and default settings for whole application. 
+/* Contains current and default settings for whole application.
 	Can be accesed using gSettings() defined in Context.hpp.
 	You shouldn't use Open and Save - they are called by Game
 	in ctor and dtor.

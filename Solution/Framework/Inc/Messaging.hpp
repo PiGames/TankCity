@@ -27,7 +27,7 @@ public:
 		TData& data;
 		int16 id;
 		uint32 uniqueID;
-	//	Msg( TData& data_, int16 id_, uint32 uniqueID_ );
+		//	Msg( TData& data_, int16 id_, uint32 uniqueID_ );
 	};
 	/* Adds message to messenger. Will be avaible to read in next frame.
 		Data is copied. One id must have one data type.
@@ -56,7 +56,7 @@ private:
 		std::any data;
 		int16 id;
 		uint32 uniqueID;
-	//	InternalMessage( std::any& data_, int16 id_, uint32 uniqueID_ );
+		//	InternalMessage( std::any& data_, int16 id_, uint32 uniqueID_ );
 	};
 	using buffer_t = std::vector<InternalMessage>;
 

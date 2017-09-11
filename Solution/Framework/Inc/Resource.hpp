@@ -96,7 +96,7 @@ template
 	typename FontResourceType = GenericResource<FontType>,
 	typename SoundBuffResourceType = GenericResource<SoundBuffType>,
 	typename MusicResourceType = MusicResource<MusicType>>
-class ResourceHolder final :
+	class ResourceHolder final :
 	public Single
 	<ResourceHolder <TextureType, FontType, SoundBuffType, MusicType,
 	TextureResourceType, FontResourceType, SoundBuffResourceType, MusicResourceType>>
@@ -139,7 +139,7 @@ public:
 	}
 
 	/* Returns reference to fallback object that is returned if Get() cannot return
-		invalid asset (if it doesn't exist for example). 
+		invalid asset (if it doesn't exist for example).
 		Usage: GetFallbackResource<ResourceTexture>
 	*/
 	template <typename T>
