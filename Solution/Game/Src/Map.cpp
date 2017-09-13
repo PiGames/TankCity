@@ -1,5 +1,6 @@
-#include "stdafx.h"
 #include "Map.hpp"
+
+#include <iostream>
 
 std::vector<Cell*> Map::GetTiles()
 {
@@ -46,13 +47,13 @@ bool Map::LoadFromFile( const std::string& path )
 	this->size = sf::Vector2u( width, height );
 
 	this->tiles.clear();
-	this->tiles.reserve( width*height );
+	this->tiles.reserve( width * height );
 
 	for ( auto i = 0u; i < height; ++i ) {
 		for ( auto j = 0u; j < width; ++j ) {
 			uint16 id;
 			file >> id;
-			this->tiles.push_back( Cell( id, { tileSize.x, tileSize.y } ) );
+			this->tiles.push_back( Cell( id, { tileSize.x * j, tileSize.y * i } ) );
 		}
 	}
 
@@ -75,14 +76,15 @@ void Map::UpdateTilesVerticies()
 		uint16 posX = cell.position.x;
 		uint16 posY = cell.position.y;
 		auto id = cell.id;
+		
+		uint16 i = posX / tileSize.x, j = posY / tileSize.y;
+		
+		sf::Vertex* quad = &this->vertices[( i + j * width ) * 4];
 
-		// i = x; j = y
-		sf::Vertex* quad = &this->vertices[( posY + posX * width ) * 4];
-
-		quad[0].position = sf::Vector2f( ( posX + 1 ) * tileSize.x, posY * tileSize.y );
-		quad[1].position = sf::Vector2f( posX * tileSize.x, posY * tileSize.y );
-		quad[2].position = sf::Vector2f( posX * tileSize.x, ( posY+ 1 ) * tileSize.y );
-		quad[3].position = sf::Vector2f( ( posX + 1 ) * tileSize.x, ( posY + 1 ) * tileSize.y );
+		quad[0].position = sf::Vector2f( ( i + 1 ) * tileSize.x, j * tileSize.y );
+		quad[1].position = sf::Vector2f( i * tileSize.x, j * tileSize.y );
+		quad[2].position = sf::Vector2f( i * tileSize.x, ( j+ 1 ) * tileSize.y );
+		quad[3].position = sf::Vector2f( ( i + 1 ) * tileSize.x, ( j + 1 ) * tileSize.y );
 
 		quad[0].texCoords = sf::Vector2f( id * tileSize.x, 0 );
 		quad[1].texCoords = sf::Vector2f( ( id + 1 ) * tileSize.x, 0 );
@@ -91,7 +93,7 @@ void Map::UpdateTilesVerticies()
 	}
 }
 
-void Map::Draw( sf::RenderWindow& window )
+void Map::Draw( sf::RenderTarget& target, sf::RenderStates states )
 {
 	/*
 	sf::View view = window.getView();
@@ -104,6 +106,9 @@ void Map::Draw( sf::RenderWindow& window )
 		}
 	}
 	*/
+	//states.transform *= getTransform();
+	states.texture = &tileSet;
+	target.draw( vertices, states );
 }
 
 Cell* Map::GetCell( int16 x, int16 y )
@@ -111,11 +116,4 @@ Cell* Map::GetCell( int16 x, int16 y )
 	for ( auto& tile : this->tiles )
 		if ( tile.position == sf::Vector2i{ x, y } )
 			return &tile;
-}
-
-void Map::draw( sf::RenderTarget& target, sf::RenderStates states )
-{
-	//states.transform *= getTransform();
-	states.texture = &tileSet;
-	target.draw( vertices, states );
 }

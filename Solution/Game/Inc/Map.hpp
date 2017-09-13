@@ -37,8 +37,7 @@ public:
 
 	bool LoadFromFile( const std::string& path );
 	void UpdateTilesVerticies();
-	void Draw( sf::RenderWindow& window );
-	void draw( sf::RenderTarget& target, sf::RenderStates states );
+	void Draw( sf::RenderTarget& target, sf::RenderStates states );
 
 	Cell* GetCell( int16 x, int16 y );
 
