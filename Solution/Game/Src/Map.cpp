@@ -49,9 +49,9 @@ bool Map::LoadFromFile( const std::string& path )
 	this->tiles.clear();
 	this->tiles.reserve( width * height );
 
+	uint16 id;
 	for ( auto i = 0u; i < height; ++i ) {
 		for ( auto j = 0u; j < width; ++j ) {
-			uint16 id;
 			file >> id;
 			this->tiles.push_back( Cell( id, { tileSize.x * j, tileSize.y * i } ) );
 		}
