@@ -6,7 +6,7 @@
 namespace con
 {
 template <typename TState>
-inline void StateStack::RegisterState( stateID_t id )
+inline void StateStack::RegisterState( stateID id )
 {
 	static_assert( std::is_base_of_v<State, TState>, "TState must derive from State" );
 	this->factories[id] = [&]() {

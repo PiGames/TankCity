@@ -46,7 +46,7 @@ bool State::imStateOnTopOfTheStack()
 	return stateOnTop == this->GetID();
 }
 
-stateID_t State::getStateOnTopOfTheStack()
+stateID State::getStateOnTopOfTheStack()
 {
 	auto stateOnTopMsg = gMessenger().GetOne<stateGetOnTopMessage_t>( To<int16>( frameworkMessages_t::STATE_GET_ON_TOP ) );
 	if ( Expects( stateOnTopMsg.has_value() ).Failed() ) {

@@ -24,9 +24,9 @@ public:
 	~Game();
 
 	template <typename TState>
-	void RegisterState( stateID_t id );
+	void RegisterState( stateID id );
 
-	void Run( stateID_t initState );
+	void Run( stateID initState );
 
 private:
 	// Context points to these fields.

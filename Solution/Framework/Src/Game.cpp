@@ -41,7 +41,7 @@ Game::~Game()
 	LOG_INFO( "Game dtor" );
 }
 
-void Game::Run( stateID_t initState )
+void Game::Run( stateID initState )
 {
 	sf::Event event{};
 

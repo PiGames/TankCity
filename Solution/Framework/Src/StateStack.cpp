@@ -32,7 +32,7 @@ void StateStack::Update()
 	gMessenger().Add<stateGetOnTopMessage_t>( this->GetStateOnTop(), STATE_GET_ON_TOP );
 }
 
-std::optional<StateStack::StatePtr> StateStack::createState( stateID_t id )
+std::optional<StateStack::StatePtr> StateStack::createState( stateID id )
 {
 	if ( Expects( !this->factories.empty() ).Failed() )
 		return {};
@@ -103,7 +103,7 @@ void StateStack::applyMessages( const actionMessagesVector_t& messages )
 	}
 }
 
-std::optional<stateID_t> StateStack::GetStateOnTop()
+std::optional<stateID> StateStack::GetStateOnTop()
 {
 	if ( Expects( !this->stack.empty() ).Failed() )
 		return {};

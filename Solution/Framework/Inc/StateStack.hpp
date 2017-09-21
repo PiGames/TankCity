@@ -25,26 +25,26 @@ class StateStack final
 	struct actionMessage_t final
 	{
 		action_t action;
-		stateID_t state;
+		stateID state;
 		uint32 uniqueID;
 	};
 
 public:
 	template <typename TState>
-	void RegisterState( stateID_t id );
+	void RegisterState( stateID id );
 
 	void Update();
-	/* Returns stateID_t of State on top. Nothing if no states on stack.
+	/* Returns stateID of State on top. Nothing if no states on stack.
 	*/
-	std::optional<stateID_t> GetStateOnTop();
+	std::optional<stateID> GetStateOnTop();
 
 private:
 	using StatePtr = std::unique_ptr<State>;
 
 	std::vector<StatePtr> stack;
-	std::unordered_map<stateID_t, std::function<StatePtr()>> factories;
+	std::unordered_map<stateID, std::function<StatePtr()>> factories;
 
-	std::optional<StatePtr> createState( stateID_t id );
+	std::optional<StatePtr> createState( stateID id );
 	using actionMessagesVector_t = std::vector<actionMessage_t>;
 	actionMessagesVector_t getOrderedMessages();
 	void applyMessages( const actionMessagesVector_t& messages );

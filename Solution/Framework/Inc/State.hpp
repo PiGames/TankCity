@@ -14,7 +14,7 @@ namespace con
 {
 
 /*	Virtual State class. You can make loading screen with it. You must overwrite
-	stateID_t GetID. You may also override OnPush, OnPop and Update().
+	stateID GetID. You may also override OnPush, OnPop and Update().
 */
 class State
 {
@@ -25,7 +25,7 @@ public:
 	State( const State& ) = delete;
 	const State& operator=( const State& ) = delete;
 
-	virtual stateID_t GetID() const = 0;
+	virtual stateID GetID() const = 0;
 	virtual void OnPush() {}
 	virtual void OnPop() {}
 	/* Called every frame - even if State is not on top.
@@ -44,7 +44,7 @@ protected:
 		For example: you probably don't want to update game AI, mobs etc. when Pause state is on top.
 	*/
 	bool imStateOnTopOfTheStack();
-	stateID_t getStateOnTopOfTheStack();
+	stateID getStateOnTopOfTheStack();
 
 private:
 	std::thread thread;

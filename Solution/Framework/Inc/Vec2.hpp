@@ -140,9 +140,9 @@ const Vec2<T> Vec2<T>::LEFT = Vec2<T>( -1, 0 );
 template <typename T>
 const Vec2<T> Vec2<T>::RIGHT = Vec2<T>( 1, 0 );
 template <typename T>
-const Vec2<T> Vec2<T>::UP = Vec2<T>( 0, 1 );
+const Vec2<T> Vec2<T>::UP = Vec2<T>( 0, -1 );
 template <typename T>
-const Vec2<T> Vec2<T>::DOWN = Vec2<T>( 0, -1 );
+const Vec2<T> Vec2<T>::DOWN = Vec2<T>( 0, 1 );
 
 template <typename T>
 Vec2<T> operator+( T left, const Vec2<T>& right );
@@ -159,6 +159,8 @@ std::ostream& operator<<( std::ostream& os, const Vec2<T>& vec );
 using Vec2f = Vec2<float32>;
 using Vec2i = Vec2<int32>;
 using Vec2u = Vec2<uint32>;
+
+using point = Vec2f;
 }
 
 #include "../Src/Vec2.inl"

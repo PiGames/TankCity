@@ -6,7 +6,7 @@
 namespace con
 {
 template<typename TState>
-inline void Game::RegisterState( stateID_t id )
+inline void Game::RegisterState( stateID id )
 {
 	this->stateStack.RegisterState<TState>( id );
 }

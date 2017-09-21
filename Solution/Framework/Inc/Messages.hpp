@@ -29,9 +29,9 @@ enum class frameworkMessages_t : int16
 struct empty_t final // cannot use void 
 {};
 
-using statePushMessage_t = stateID_t;
+using statePushMessage_t = stateID;
 using statePopMessage_t = empty_t;
-using stateGetOnTopMessage_t = std::optional<stateID_t>;
+using stateGetOnTopMessage_t = std::optional<stateID>;
 using inputMessage_t = sf::Event;
 using exitMessage_t = empty_t;
 }
