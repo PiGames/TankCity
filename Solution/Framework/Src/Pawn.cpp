@@ -24,12 +24,12 @@ void Pawn::Update()
 		this->controller->Update();
 }
 
-Pawn* PawnController::GetOwner()
+Pawn* PawnController::GetPawn()
 {
 	return this->owner;
 }
 
-bool PawnController::HasOwner() const
+bool PawnController::HasPawn() const
 {
 	return this->owner != nullptr;
 }

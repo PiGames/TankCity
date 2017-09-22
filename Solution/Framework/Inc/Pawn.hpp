@@ -46,9 +46,9 @@ public:
 
 	virtual ~PawnController() = default;
 
-	Pawn* GetOwner();
+	Pawn* GetPawn();
 
-	bool HasOwner() const;
+	bool HasPawn() const;
 
 	virtual void Update() = 0;
 
