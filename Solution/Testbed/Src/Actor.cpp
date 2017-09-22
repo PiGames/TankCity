@@ -29,7 +29,7 @@ int main()
 	sf::RenderWindow window( {800,600}, "Actor" );
 	window.setFramerateLimit( 60 );
 	sf::Event ev;
-	Actor testActor(1);
+	Actor testActor;
 	sf::Texture tex;
 	sf::Image img;
 	img.create( 32, 32, sf::Color::Red );

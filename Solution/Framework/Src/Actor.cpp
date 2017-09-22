@@ -8,10 +8,6 @@
 
 namespace con
 {
-Actor::Actor( int32 uniqueID_ ) :
-	uniqueID( uniqueID_ )
-{}
-
 point Actor::GetPosition() const
 {
 	return this->position;
@@ -42,6 +38,11 @@ void Actor::SetRotation( degrees rotation_ )
 	this->rotation = rotation_;
 }
 
+void Actor::_SetUniqueID( int32 uniqueID_ )
+{
+	this->uniqueID = uniqueID_;
+}
+
 void Actor::Rotate( degrees angle )
 {
 	if ( angle < -360 || angle > 360 )
@@ -57,7 +58,6 @@ void Actor::Move( const Vec2f& force )
 
 void Actor::Update()
 {
-
 	auto transformPlain = [this]( auto& transformable ) {
 		transformable.setRotation( this->rotation );
 		transformable.setPosition( this->position.AsSFMLVec() );

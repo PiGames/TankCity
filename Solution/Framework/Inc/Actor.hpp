@@ -17,7 +17,6 @@ public:
 	Actor& operator=( const Actor& ) = default;
 	Actor& operator=( Actor&& ) = default;
 	Actor() = default;
-	Actor( int32 uniqueID_ );
 
 	virtual ~Actor() = default;
 
@@ -28,6 +27,7 @@ public:
 
 	void SetPosition( const point& position_ );
 	void SetRotation( degrees rotation_ );
+	void _SetUniqueID( int32 uniqueID_ );
 
 	void Rotate( degrees angle );
 	void Move( const Vec2f& force );
