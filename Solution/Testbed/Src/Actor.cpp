@@ -5,7 +5,7 @@
 
 #include "Actor.hpp"
 #include "Context.hpp"
-#include "Logger.hpp"
+#include "Debug.hpp"
 
 #include <iostream>
 
@@ -35,7 +35,11 @@ int main()
 	img.create( 32, 32, sf::Color::Red );
 	tex.loadFromImage( img );
 
-	testActor.GetDrawableRef().GetVariantRef() = sf::Sprite( tex );
+	auto spr = sf::Sprite( tex );
+	spr.setOrigin( 16, 16 );
+
+	testActor.DrawableRef().Sprite() = spr;
+	testActor.DrawableRef().RectangleShape() = sf::RectangleShape( { 64,64 } );
 
 	while ( window.isOpen() ) {
 		while ( window.pollEvent( ev ) ) {
@@ -43,8 +47,10 @@ int main()
 				window.close();
 		}
 
-		testActor.Move( Vec2f::UP * 0.1 );
+		testActor.Move( Vec2f::DOWN * 0.1 + Vec2f::RIGHT * 0.1 );
+		testActor.Rotate( 1 );
 		testActor.Update();
+		LOG_INFO( "Deg: ", To<int16>(testActor.GetRotation()), " Pos: ", testActor.GetPosition() );
 
 		window.clear();
 		testActor.Draw( window );

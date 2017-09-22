@@ -19,14 +19,22 @@ namespace con
 namespace priv
 {
 using drawablePlain = std::variant<sf::Sprite, sf::Text, sf::RectangleShape, sf::CircleShape>;
-using drawableVariant = std::variant<sf::Sprite, sf::Text, sf::RectangleShape, sf::CircleShape, std::vector<priv::drawablePlain>>;
 }
+
+using drawableVec = std::vector<priv::drawablePlain>;
+using drawableVariant = std::variant<sf::Sprite, sf::Text, sf::RectangleShape, sf::CircleShape, drawableVec>;
 
 class Drawable final
 {
 public:
 	int8 GetLayer() const;
-	priv::drawableVariant& GetVariantRef();
+	drawableVariant& GetVariantRef();
+
+	sf::Sprite& Sprite();
+	sf::Text& Text();
+	sf::RectangleShape& RectangleShape();
+	sf::CircleShape& CircleShape();
+	drawableVec& DrawableVec();
 
 	void SetLayer( int8 layer_ );
 
@@ -34,6 +42,6 @@ public:
 
 private:
 	int8 layer = 0;
-	priv::drawableVariant toDraw;
+	drawableVariant toDraw;
 };
 }

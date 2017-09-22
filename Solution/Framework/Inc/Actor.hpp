@@ -24,7 +24,7 @@ public:
 	point GetPosition() const;
 	degrees GetRotation() const;
 	int32 GetUniqueID() const;
-	Drawable& GetDrawableRef();
+	Drawable& DrawableRef();
 
 	void SetPosition( const point& position_ );
 	void SetRotation( degrees rotation_ );

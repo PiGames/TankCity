@@ -27,7 +27,7 @@ int32 Actor::GetUniqueID() const
 	return this->uniqueID;
 }
 
-Drawable& Actor::GetDrawableRef()
+Drawable& Actor::DrawableRef()
 {
 	return this->toDraw;
 }
