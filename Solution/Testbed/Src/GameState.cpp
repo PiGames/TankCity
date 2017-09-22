@@ -13,9 +13,9 @@ enum class state_t
 class StateA final :
 	public con::State
 {
-	con::stateID_t GetID() const override
+	con::stateID GetID() const override
 	{
-		return con::To<con::stateID_t>( state_t::StateA );
+		return con::To<con::stateID>( state_t::StateA );
 	}
 
 	void OnPush() override
@@ -43,7 +43,7 @@ class StateA final :
 		}
 
 		if ( switchThreadTimer.GetMilliseconds() > 1000 )
-			con::gMessenger().Add<con::statePushMessage_t>( con::To<con::stateID_t>( state_t::StateB ),
+			con::gMessenger().Add<con::statePushMessage_t>( con::To<con::stateID>( state_t::StateB ),
 															con::To<con::int16>( con::frameworkMessages_t::STATE_PUSH ) );
 	}
 	void UpdateThread()
@@ -58,9 +58,9 @@ class StateA final :
 class StateB final :
 	public con::State
 {
-	con::stateID_t GetID() const override
+	con::stateID GetID() const override
 	{
-		return con::To<con::stateID_t>( state_t::StateB );
+		return con::To<con::stateID>( state_t::StateB );
 	}
 
 	void OnPush() override
@@ -99,10 +99,10 @@ int main()
 {
 	{
 		con::Game game( "config.ini" );
-		game.RegisterState<StateA>( con::To<con::stateID_t>( state_t::StateA ) );
-		game.RegisterState<StateB>( con::To<con::stateID_t>( state_t::StateB ) );
+		game.RegisterState<StateA>( con::To<con::stateID>( state_t::StateA ) );
+		game.RegisterState<StateB>( con::To<con::stateID>( state_t::StateB ) );
 
-		game.Run( con::To<con::stateID_t>( state_t::StateA ) );
+		game.Run( con::To<con::stateID>( state_t::StateA ) );
 	}
 	std::cin.get();
 }

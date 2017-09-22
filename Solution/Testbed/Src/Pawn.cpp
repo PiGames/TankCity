@@ -20,7 +20,7 @@ class TestController :
 		auto& pawn = *this->GetPawn();
 		pawn.Move( ( Vec2f::DOWN + Vec2f::RIGHT ) * 0.1 );
 		pawn.Rotate( 1.5f );
-		LOG_INFO( "Deg: ", To<int16>(pawn.GetRotation()), " Pos: ", pawn.GetPosition() );
+		LOG_INFO( "Deg: ", To<int16>( pawn.GetRotation() ), " Pos: ", pawn.GetPosition() );
 	}
 };
 
@@ -37,8 +37,8 @@ static void Init()
 int main()
 {
 	Init();
-	
-	sf::RenderWindow window( {800,600}, "Pawn" );
+
+	sf::RenderWindow window( { 800,600 }, "Pawn" );
 	window.setFramerateLimit( 60 );
 	sf::Event ev;
 	Pawn testPawn;

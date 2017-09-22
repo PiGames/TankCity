@@ -24,9 +24,8 @@ struct Cell
 
 	Cell() = default;
 	Cell( uint16 id_, sf::Vector2u position_ ) :
-		id(id_), position(position_)
-	{
-	}
+		id( id_ ), position( position_ )
+	{}
 };
 
 class Map

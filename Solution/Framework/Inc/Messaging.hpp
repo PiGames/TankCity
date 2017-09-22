@@ -22,7 +22,7 @@ class Messenger final :
 {
 public:
 	template <typename TData>
-	struct Msg	// Templated version of InternalMessage structure.
+	struct Msg final // Templated version of InternalMessage structure.
 	{
 		TData& data;
 		int16 id;

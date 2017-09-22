@@ -47,7 +47,8 @@ sf::RectangleShape& Drawable::RectangleShape()
 	} catch ( const std::bad_variant_access& ) {
 		this->toDraw = sf::RectangleShape();
 		return this->RectangleShape();
-	}}
+	}
+}
 
 sf::CircleShape& Drawable::CircleShape()
 {
@@ -56,7 +57,8 @@ sf::CircleShape& Drawable::CircleShape()
 	} catch ( const std::bad_variant_access& ) {
 		this->toDraw = sf::CircleShape();
 		return this->CircleShape();
-	}}
+	}
+}
 
 drawableVec& Drawable::DrawableVec()
 {
@@ -65,7 +67,8 @@ drawableVec& Drawable::DrawableVec()
 	} catch ( const std::bad_variant_access& ) {
 		this->toDraw = drawableVec();
 		return this->DrawableVec();
-	}}
+	}
+}
 
 void Drawable::SetLayer( int8 layer_ )
 {

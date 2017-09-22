@@ -57,7 +57,7 @@ bool Map::LoadFromFile( const std::string& path )
 		}
 	}
 
-	if ( Ensures( this->tiles.size() == width * height).Failed() ) {
+	if ( Ensures( this->tiles.size() == width * height ).Failed() ) {
 		this->tiles.clear();
 		return false;
 	}
@@ -76,14 +76,14 @@ void Map::UpdateTilesVerticies()
 		uint16 posX = cell.position.x;
 		uint16 posY = cell.position.y;
 		auto id = cell.id;
-		
+
 		uint16 i = posX / tileSize.x, j = posY / tileSize.y;
-		
+
 		sf::Vertex* quad = &this->vertices[( i + j * width ) * 4];
 
 		quad[0].position = sf::Vector2f( ( i + 1 ) * tileSize.x, j * tileSize.y );
 		quad[1].position = sf::Vector2f( i * tileSize.x, j * tileSize.y );
-		quad[2].position = sf::Vector2f( i * tileSize.x, ( j+ 1 ) * tileSize.y );
+		quad[2].position = sf::Vector2f( i * tileSize.x, ( j + 1 ) * tileSize.y );
 		quad[3].position = sf::Vector2f( ( i + 1 ) * tileSize.x, ( j + 1 ) * tileSize.y );
 
 		quad[0].texCoords = sf::Vector2f( id * tileSize.x, 0 );
