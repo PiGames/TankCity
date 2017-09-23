@@ -9,7 +9,7 @@ template<typename TData>
 inline void Messenger::Add( const TData& data, int16 id )
 {
 	auto anyToEmplace = std::make_any<TData>( data );
-	this->nextFrameMessages.emplace_back( InternalMessage{ anyToEmplace, id, ++this->uniqueIDCounter } );
+	this->nextFrameMessages.emplace_back( InternalMessage{ anyToEmplace, id, ++this->actorsIDCounter } );
 }
 
 template<typename TData>

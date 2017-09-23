@@ -12,7 +12,7 @@ namespace con
 
 Pawn::~Pawn()
 {
-	if ( Expects( this->controller->owner == this ).Failed() )
+	if ( Expects( this->controller.get() ).Failed() )
 		return;
 
 	this->controller->owner = nullptr;

@@ -27,7 +27,6 @@ public:
 		TData& data;
 		int16 id;
 		uint32 uniqueID;
-		//	Msg( TData& data_, int16 id_, uint32 uniqueID_ );
 	};
 	/* Adds message to messenger. Will be avaible to read in next frame.
 		Data is copied. One id must have one data type.
@@ -60,7 +59,7 @@ private:
 	};
 	using buffer_t = std::vector<InternalMessage>;
 
-	uint32 uniqueIDCounter = 0;
+	uint32 actorsIDCounter = 0;
 	buffer_t nextFrameMessages;
 	buffer_t currentFrameMessages;
 };

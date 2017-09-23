@@ -12,7 +12,10 @@
 
 namespace con
 {
+// Note: Scene doesn't have ID because there is one scene per State. At least for now. 
+// IDEA: Add virtual Update().
 // IDEA: Add message for removing Actors (using removeActorMessage = int where int is actor unique ID)
+// IDEA: Add GetActor message (return actor of given unique ID from current scene).
 class Scene
 {
 public:
@@ -34,7 +37,7 @@ public:
 
 private:
 	std::vector<std::unique_ptr<Actor>> actors;
-	int32 uniqueIDCounter = -1;
+	int32 actorsIDCounter = -1;
 
 	void sortActorsByDrawLayer();
 	std::optional<std::unique_ptr<Actor>*> findActorByID( int32 uniqueID );

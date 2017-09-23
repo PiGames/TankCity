@@ -9,13 +9,13 @@ TActor& Scene::Spawn()
 {
 	static_assert( std::is_base_of_v<Actor, TActor> );
 
-	if ( this->actors.capacity() == this->actors.size() + 1 )
+	if ( this->actors.capacity() < this->actors.size() + 1 )
 		LOG_WARN( "Scene::actors needs to alloc (now reserved ", this->actors.capacity(), ")" );
 
 	Actor* newActor = nullptr;
 	if ( auto freeActor = this->findFreeActor(); freeActor.has_value() ) {
 		*freeActor.value() = std::make_unique<TActor>();
-		newActor = *freeActor.value()->get();
+		newActor = freeActor.value()->get();
 	} else
 		newActor = this->actors.emplace_back( std::make_unique<TActor>() ).get();
 
@@ -27,7 +27,7 @@ TActor& Scene::Spawn()
 		return fallbackActor;
 	}
 
-	newActor->_SetUniqueID( ++uniqueIDCounter );
+	newActor->_SetUniqueID( ++actorsIDCounter );
 	newActor->_SetScene( *this );
 	return static_cast<TActor&>( *newActor );
 }

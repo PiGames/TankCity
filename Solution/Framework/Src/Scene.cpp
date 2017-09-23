@@ -49,10 +49,13 @@ void Scene::sortActorsByDrawLayer()
 {
 	std::sort( this->actors.begin(), this->actors.end(),
 			   []( auto& a, auto& b ) {
+		if ( !a || !b )
+			return false;
+
 		auto layerA = a->DrawableRef().GetLayer();
 		auto layerB = b->DrawableRef().GetLayer();
 
-		return ( a && b ) && ( layerA < layerB );
+		return layerA < layerB;
 	} );
 }
 
@@ -60,7 +63,7 @@ std::optional<std::unique_ptr<Actor>*> Scene::findActorByID( int32 uniqueID )
 {
 	auto result = std::find_if( this->actors.begin(), this->actors.end(),
 								[uniqueID]( const auto& actor ) {
-		return actor->GetUniqueID() == uniqueID;
+		return actor && actor->GetUniqueID() == uniqueID;
 	} );
 
 	if ( result == this->actors.end() )
