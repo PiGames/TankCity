@@ -1,6 +1,5 @@
 /*
 	Untitled_Guys 2017
-	https://github.com/UntitledGuys/
 */
 
 #include "../Inc/PCH.hpp"
@@ -11,9 +10,12 @@
 namespace con
 {
 
-PawnController* Pawn::GetController()
+Pawn::~Pawn()
 {
-	return this->controller.get();
+	if ( Expects( this->controller->owner == this ).Failed() )
+		return;
+
+	this->controller->owner = nullptr;
 }
 
 void Pawn::Update()
@@ -32,11 +34,6 @@ Pawn* PawnController::GetPawn()
 bool PawnController::HasPawn() const
 {
 	return this->owner != nullptr;
-}
-
-void PawnController::posses( Pawn* owner_ )
-{
-	this->owner = owner_;
 }
 
 }

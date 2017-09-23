@@ -20,12 +20,10 @@ public:
 	Pawn& operator=( Pawn&& ) = default;
 	Pawn() = default;
 
-	virtual ~Pawn() = default;
-
-	PawnController* GetController();
+	virtual ~Pawn();
 
 	template <typename TPawnController>
-	TPawnController* ResetController();
+	void ResetController();
 
 	virtual void Update() override;
 
@@ -55,8 +53,6 @@ public:
 
 private:
 	Pawn* owner = nullptr;
-
-	void posses( Pawn* owner_ );
 };
 }
 
