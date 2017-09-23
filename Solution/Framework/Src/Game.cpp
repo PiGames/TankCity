@@ -45,7 +45,7 @@ void Game::Run( stateID initState )
 {
 	sf::Event event{};
 
-	gMessenger().Add<statePushMessage_t>( initState, To<int16>( frameworkMessages_t::STATE_PUSH ) );
+	gMessenger().Add<statePushMessage>( initState, To<int16>( frameworkMessages_t::STATE_PUSH ) );
 
 	while ( !this->exit ) {
 		this->handleInput( event );
@@ -63,7 +63,7 @@ void Game::handleInput( sf::Event& event )
 		}
 
 		if ( this->window.hasFocus() )
-			gMessenger().Add<inputMessage_t>( event, To<int16>( frameworkMessages_t::INPUT ) );
+			gMessenger().Add<inputMessage>( event, To<int16>( frameworkMessages_t::INPUT ) );
 	}
 }
 
@@ -72,7 +72,7 @@ void Game::update()
 	this->time._update();
 	this->messenger.SwapBuffers();
 	this->stateStack.Update();
-	if ( messenger.GetOne<exitMessage_t>( To<int16>( frameworkMessages_t::EXIT ) ).has_value() )
+	if ( messenger.GetOne<exitMessage>( To<int16>( frameworkMessages_t::EXIT ) ).has_value() )
 		this->exit = true;
 }
 

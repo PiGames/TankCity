@@ -23,15 +23,16 @@ enum class frameworkMessages_t : int16
 	STATE_POP,
 	STATE_GET_ON_TOP, // sent every update.
 	INPUT,
+
 	EXIT
 };
 
-struct empty_t final // cannot use void 
+struct empty final // cannot use void 
 {};
 
-using statePushMessage_t = stateID;
-using statePopMessage_t = empty_t;
-using stateGetOnTopMessage_t = std::optional<stateID>;
-using inputMessage_t = sf::Event;
-using exitMessage_t = empty_t;
+using statePushMessage = stateID;
+using statePopMessage = empty;
+using stateGetOnTopMessage = std::optional<stateID>;
+using inputMessage = sf::Event;
+using exitMessage = empty;
 }

@@ -29,7 +29,7 @@ void StateStack::Update()
 		state->Update();
 	}
 
-	gMessenger().Add<stateGetOnTopMessage_t>( this->GetStateOnTop(), STATE_GET_ON_TOP );
+	gMessenger().Add<stateGetOnTopMessage>( this->GetStateOnTop(), STATE_GET_ON_TOP );
 }
 
 std::optional<StateStack::StatePtr> StateStack::createState( stateID id )
@@ -48,8 +48,8 @@ std::optional<StateStack::StatePtr> StateStack::createState( stateID id )
 
 StateStack::actionMessagesVector_t StateStack::getOrderedMessages()
 {
-	auto pushMessages = gMessenger().GetAll<statePushMessage_t>( STATE_PUSH );
-	auto popMessages = gMessenger().GetAll<statePopMessage_t>( STATE_POP );
+	auto pushMessages = gMessenger().GetAll<statePushMessage>( STATE_PUSH );
+	auto popMessages = gMessenger().GetAll<statePopMessage>( STATE_POP );
 	if ( pushMessages.empty() && popMessages.empty() )
 		return {};
 
