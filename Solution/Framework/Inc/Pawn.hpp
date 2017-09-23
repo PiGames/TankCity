@@ -47,6 +47,7 @@ public:
 	virtual ~PawnController() = default;
 
 	Pawn* GetPawn();
+	virtual int32 GetID() const = 0;
 
 	bool HasPawn() const;
 

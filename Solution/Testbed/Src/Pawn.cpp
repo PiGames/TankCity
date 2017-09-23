@@ -22,6 +22,11 @@ class TestController :
 		pawn.Rotate( 1.5f );
 		LOG_INFO( "Deg: ", To<int16>( pawn.GetRotation() ), " Pos: ", pawn.GetPosition() );
 	}
+
+	int32 GetID() const override
+	{
+		return 0;
+	}
 };
 
 
