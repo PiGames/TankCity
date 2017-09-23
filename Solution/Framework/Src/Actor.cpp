@@ -3,8 +3,7 @@
 */
 
 #include "../Inc/PCH.hpp"
-#include "../Inc/Actor.hpp"
-#include "../Inc/Guideline.hpp"
+#include "../Inc/Scene.hpp"
 
 namespace con
 {
@@ -28,6 +27,12 @@ Drawable& Actor::DrawableRef()
 	return this->toDraw;
 }
 
+NotNull<Scene*> Actor::GetScene()
+{
+	return ( this->scene );
+}
+
+
 void Actor::SetPosition( const point& position_ )
 {
 	this->position = position_;
@@ -41,6 +46,12 @@ void Actor::SetRotation( degrees rotation_ )
 void Actor::_SetUniqueID( int32 uniqueID_ )
 {
 	this->uniqueID = uniqueID_;
+}
+
+void Actor::_SetScene( Scene& scene_ )
+{
+	this->scene = &scene_;
+	Ensures( this->scene != nullptr );
 }
 
 void Actor::Rotate( degrees angle )

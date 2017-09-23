@@ -6,9 +6,12 @@
 
 #include "Vec2.hpp"
 #include "Drawable.hpp"
+#include "Guideline.hpp"
 
 namespace con
 {
+class Scene;
+
 class Actor
 {
 public:
@@ -24,10 +27,12 @@ public:
 	degrees GetRotation() const;
 	int32 GetUniqueID() const;
 	Drawable& DrawableRef();
+	NotNull<Scene*> GetScene();
 
 	void SetPosition( const point& position_ );
 	void SetRotation( degrees rotation_ );
 	void _SetUniqueID( int32 uniqueID_ );
+	void _SetScene( Scene& scene_ );
 
 	void Rotate( degrees angle );
 	void Move( const Vec2f& force );
@@ -38,8 +43,9 @@ public:
 private:
 	point position = point::ZERO;
 	degrees rotation = 0;
-	int32 uniqueID = 0;
+	int32 uniqueID = -1;
 	Drawable toDraw;
+	Scene* scene = nullptr;
 
 	/* 361 to 1, 400 to 40 (x - 360 unltil x <= 360
 		Converts to abs value if negative.
