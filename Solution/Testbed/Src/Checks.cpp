@@ -3,8 +3,8 @@
 	https://github.com/condzi
 */
 
-#include "../../Framework/Inc/Guideline.hpp"
-#include "../../Framework/Inc/Debug.hpp"
+#include "Guideline.hpp"
+#include "Debug.hpp"
 #include <iostream>
 
 static void Init()

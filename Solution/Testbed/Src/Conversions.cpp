@@ -5,8 +5,8 @@
 
 #include <iostream>
 
-#include "../../Framework/Inc/Conversions.hpp"
-#include "../../Framework/Inc/Types.hpp"
+#include "Conversions.hpp"
+#include "Types.hpp"
 
 using namespace con;
 
@@ -20,8 +20,8 @@ int main()
 	uint32 uint32Val = 6;
 	int64 int64Val = 7;
 	uint64 uint64Val = 8;
-	float floatVal = 9.5f;
-	double doubleVal = 10.55;
+	float32 float32Val = 9.5f;
+	float64 float64Val = 10.55;
 	bool boolVal = true;
 
 	std::string int8str = "1";
@@ -45,8 +45,8 @@ int main()
 	std::cout << To<std::string>( uint32Val ) << '\n';
 	std::cout << To<std::string>( int64Val ) << '\n';
 	std::cout << To<std::string>( uint64Val ) << '\n';
-	std::cout << To<std::string>( floatVal ) << '\n';
-	std::cout << To<std::string>( doubleVal ) << '\n';
+	std::cout << To<std::string>( float32Val ) << '\n';
+	std::cout << To<std::string>( float64Val ) << '\n';
 	std::cout << To<std::string>( boolVal ) << '\n';
 
 	std::cout << "---\n";
@@ -73,8 +73,8 @@ int main()
 	std::cout << con::To<std::string>( "uint32 = ", uint32Val, "!"  ) << '\n';
 	std::cout << con::To<std::string>( "int64  = ", int64Val, "!"  ) << '\n';
 	std::cout << con::To<std::string>( "uint64 = ", uint64Val, "!"  ) << '\n';
-	std::cout << con::To<std::string>( "float32  = ", floatVal, "!"  ) << '\n';
-	std::cout << con::To<std::string>( "float64  = ", doubleVal, "!"  ) << '\n';
+	std::cout << con::To<std::string>( "float32  = ", float32Val, "!"  ) << '\n';
+	std::cout << con::To<std::string>( "float64  = ", float64Val, "!"  ) << '\n';
 	std::cout << con::To<std::string>( "bool	 = ", boolVal, "!"  ) << '\n';
 
 	std::cin.get();
