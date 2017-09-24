@@ -12,10 +12,6 @@
 
 namespace con
 {
-// Note: Scene doesn't have ID because there is one scene per State. At least for now. 
-// IDEA: Add virtual Update().
-// IDEA: Add message for removing Actors (using removeActorMessage = int where int is actor unique ID)
-// IDEA: Add GetActor message (return actor of given unique ID from current scene).
 class Scene
 {
 public:
@@ -28,11 +24,13 @@ public:
 
 	virtual ~Scene() = default;
 
+	virtual int32 GetID() const = 0;
+
 	template <typename TActor>
 	TActor& Spawn();
 	bool Kill( int32 actorUniqueID );
 
-	void Update();
+	virtual void Update();
 	void Draw( sf::RenderTarget& target );
 
 private:

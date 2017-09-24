@@ -39,6 +39,26 @@ static void Init()
 	Context::logger = &logger;
 }
 
+class MyScene :
+	public Scene
+{
+public:
+	MyScene() = default;
+	MyScene( uint32 reserve ) :
+		Scene( reserve )
+	{}
+
+	int32 GetID() const override
+	{
+		return 0;
+	}
+
+	void Update() override
+	{
+		Scene::Update();
+	}
+};
+
 int main()
 {
 	Init();
@@ -47,7 +67,7 @@ int main()
 	window.setFramerateLimit( 60 );
 	sf::Event ev;
 
-	Scene scene( 1 ); // should warn, given value smaller or equal to 1.
+	MyScene scene( 1 ); // should warn, given value smaller or equal to 1.
 
 	auto& pawn1 = scene.Spawn<Pawn>();
 	auto& pawn2 = scene.Spawn<Pawn>(); // should warn about resizing to value bigger than reserved
@@ -70,12 +90,12 @@ int main()
 
 		gTime()._update();
 
-		if ( static bool done = false;  gTime().GetTimeMs() > 5000 && !done ) {
+		if ( static bool done = false;  gTime().SinceAppStartMs() > 5000 && !done ) {
 			scene.Kill( 0 );
 			done = true;
 		}
-		
-		if ( static bool done = false; gTime().GetTimeMs() > 6000 && !done ) {
+
+		if ( static bool done = false; gTime().SinceAppStartMs() > 6000 && !done ) {
 			auto& newPawn = scene.Spawn<Pawn>();
 			if ( &pawn1 == &newPawn ) // not guaranteed to be true. Use unique ids instead storing pointers.
 				LOG_INFO( "&pawn1 == &newPawn => reusing memory in this case." );
@@ -86,7 +106,7 @@ int main()
 		}
 
 		//LOG_INFO( 1 / gTime().GetFrameDelta(), "fps" );
-		
+
 		scene.Update();
 
 		window.clear();
