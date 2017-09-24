@@ -20,7 +20,7 @@ State::~State()
 void State::StartThread()
 {
 	if ( this->threadIsRunning ) {
-		LOG_WARN( "Thread of State: ", this->GetID(), " already running, cannot start" );
+		LOG_WARN_D( "Thread of State: ", this->GetID(), " already running, cannot start" );
 		return;
 	}
 
@@ -31,7 +31,7 @@ void State::StartThread()
 void State::StopThread()
 {
 	if ( !this->threadIsRunning ) {
-		LOG_WARN( "Thread of State: ", this->GetID(), " not running, cannot stop" );
+		LOG_WARN_D( "Thread of State: ", this->GetID(), " not running, cannot stop" );
 		return;
 	}
 
@@ -43,21 +43,17 @@ bool State::imStateOnTopOfTheStack()
 {
 	const auto stateOnTop = this->getStateOnTopOfTheStack();
 
-	return stateOnTop == this->GetID();
+	return stateOnTop.value_or( ~this->GetID() ) == this->GetID();
 }
 
-stateID State::getStateOnTopOfTheStack()
+std::optional<stateID> State::getStateOnTopOfTheStack()
 {
 	auto stateOnTopMsg = gMessenger().GetOne<stateGetOnTopMessage>( To<int16>( frameworkMessages_t::STATE_GET_ON_TOP ) );
-	if ( Expects( stateOnTopMsg.has_value() ).Failed() ) {
-		return this->GetID(); // Panic! What should I do?!
-	}
-	auto stateOnTop = stateOnTopMsg.value();
-	if ( Expects( stateOnTopMsg.has_value() ).Failed() ) {
-		return this->GetID(); // Panic v2! What should I do?!
-	}
 
-	return stateOnTop.data.value();
+	if ( !stateOnTopMsg.has_value() || !stateOnTopMsg.value().data.has_value() )
+		return {};
+
+	return stateOnTopMsg.value().data;
 }
 
 void State::threadLoop()

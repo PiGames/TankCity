@@ -1,6 +1,6 @@
-#include "../../Framework/Inc/Game.hpp"
-#include "../../Framework/Inc/State.hpp"
-#include "../../Framework/Inc/Messages.hpp"
+#include "Game.hpp"
+#include "State.hpp"
+#include "Messages.hpp"
 
 #include <iostream>
 
@@ -42,9 +42,11 @@ class StateA final :
 			Logged = true;
 		}
 
-		if ( switchThreadTimer.GetMilliseconds() > 1000 )
+		if ( static bool done = false;  switchThreadTimer.GetMilliseconds() > 1000 && !done ) {
 			con::gMessenger().Add<con::statePushMessage>( con::To<con::stateID>( state_t::StateB ),
 															con::To<con::int16>( con::frameworkMessages_t::STATE_PUSH ) );
+			done = true;
+		}
 	}
 	void UpdateThread()
 	{
@@ -83,8 +85,10 @@ class StateB final :
 			Logged = true;
 		}
 
-		if ( switchThreadTimer.GetMilliseconds() > 1000 )
+		if ( static bool done = false;  switchThreadTimer.GetMilliseconds() > 1000 && !done ) {
 			con::gMessenger().Add<con::exitMessage>( {}, con::To<con::int16>( con::frameworkMessages_t::EXIT ) );
+			done = true;
+		}
 	}
 	void UpdateThread()
 	{

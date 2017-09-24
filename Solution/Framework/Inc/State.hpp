@@ -9,6 +9,7 @@
 
 #include <thread>
 #include <atomic>
+#include <optional>
 
 namespace con
 {
@@ -44,7 +45,7 @@ protected:
 		For example: you probably don't want to update game AI, mobs etc. when Pause state is on top.
 	*/
 	bool imStateOnTopOfTheStack();
-	stateID getStateOnTopOfTheStack();
+	std::optional<stateID> getStateOnTopOfTheStack();
 
 private:
 	std::thread thread;

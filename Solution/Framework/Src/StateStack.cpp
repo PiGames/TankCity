@@ -79,20 +79,19 @@ StateStack::actionMessagesVector_t StateStack::getOrderedMessages()
 
 void StateStack::applyMessages( const actionMessagesVector_t& messages )
 {
+	// TODO: Split ifs to smaller methods.
 	for ( const auto& msg : messages ) {
 		auto currentStateID = this->GetStateOnTop();
 		if ( msg.action == action_t::POP ) {
-			if ( Expects( !this->stack.empty() ).Failed() ) {
+			if ( Expects( !this->stack.empty() ).Failed() )
 				continue;
-			}
 			LOG_INFO( "State pop, id: ", currentStateID.value() );
 			this->stack.back()->OnPop();
 			this->stack.pop_back();
 		} else if ( msg.action == action_t::PUSH ) {
 			if ( Expects( !currentStateID.has_value() ||
-				 currentStateID.value() != msg.state ).Failed() ) {
+				 currentStateID.value() != msg.state ).Failed() )
 				continue;
-			}
 			LOG_INFO( "State push, id: ", msg.state );
 			auto stateToPush = this->createState( msg.state );
 			if ( stateToPush.has_value() ) {
@@ -105,7 +104,7 @@ void StateStack::applyMessages( const actionMessagesVector_t& messages )
 
 std::optional<stateID> StateStack::GetStateOnTop()
 {
-	if ( Expects( !this->stack.empty() ).Failed() )
+	if ( this->stack.empty() )
 		return {};
 
 	return this->stack.back()->GetID();
