@@ -48,6 +48,8 @@ private:
 	using actionMessagesVector_t = std::vector<actionMessage_t>;
 	actionMessagesVector_t getOrderedMessages();
 	void applyMessages( const actionMessagesVector_t& messages );
+	void applyPop();
+	void applyPush( const actionMessage_t& message );
 };
 }
 

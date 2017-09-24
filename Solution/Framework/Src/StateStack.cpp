@@ -79,26 +79,38 @@ StateStack::actionMessagesVector_t StateStack::getOrderedMessages()
 
 void StateStack::applyMessages( const actionMessagesVector_t& messages )
 {
-	// TODO: Split ifs to smaller methods.
 	for ( const auto& msg : messages ) {
-		auto currentStateID = this->GetStateOnTop();
-		if ( msg.action == action_t::POP ) {
-			if ( Expects( !this->stack.empty() ).Failed() )
-				continue;
-			LOG_INFO( "State pop, id: ", currentStateID.value() );
-			this->stack.back()->OnPop();
-			this->stack.pop_back();
-		} else if ( msg.action == action_t::PUSH ) {
-			if ( Expects( !currentStateID.has_value() ||
-				 currentStateID.value() != msg.state ).Failed() )
-				continue;
-			LOG_INFO( "State push, id: ", msg.state );
-			auto stateToPush = this->createState( msg.state );
-			if ( stateToPush.has_value() ) {
-				this->stack.push_back( std::move( stateToPush.value() ) );
-				this->stack.back()->OnPush();
-			}
-		}
+		if ( msg.action == action_t::POP )
+			applyPop();
+		else if ( msg.action == action_t::PUSH )
+			applyPush( msg );
+	}
+}
+
+void StateStack::applyPop()
+{
+	auto stateOnTop = this->GetStateOnTop();
+
+	if ( Expects( !stateOnTop.has_value() ).Failed() )
+		return;
+
+	LOG_INFO( "State pop, id: ", stateOnTop.value() );
+	this->stack.back()->OnPop();
+	this->stack.pop_back();
+}
+
+void StateStack::applyPush( const actionMessage_t& message )
+{
+	auto stateOnTop = this->GetStateOnTop();
+	if ( Expects( !stateOnTop.has_value() ||
+		 stateOnTop.value() != message.state ).Failed() )
+		return;
+
+	LOG_INFO( "State push, id: ", message.state );
+	auto stateToPush = this->createState( message.state );
+	if ( stateToPush.has_value() ) {
+		this->stack.push_back( std::move( stateToPush.value() ) );
+		this->stack.back()->OnPush();
 	}
 }
 
