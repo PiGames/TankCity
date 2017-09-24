@@ -17,6 +17,27 @@ State::~State()
 	if ( this->threadIsRunning )
 		this->StopThread();
 }
+
+std::optional<Scene*> State::GetScene()
+{
+	if ( !this->scene )
+		return {};
+
+	return this->scene.get();
+}
+
+void State::Update()
+{
+	if ( this->scene )
+		this->scene->Update();
+}
+
+void State::Draw( sf::RenderTarget& target )
+{
+	if ( this->scene )
+		this->scene->Draw( target );
+}
+
 void State::StartThread()
 {
 	if ( this->threadIsRunning ) {
