@@ -7,6 +7,8 @@
 
 #include <chrono>
 
+#include "Types.hpp"
+
 /* Timer class based on Banshee Engine implemenation by Marko Pintera (marko.pintera@gmail.com).
 	www.banshee3d.com
 */

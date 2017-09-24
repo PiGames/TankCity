@@ -4,8 +4,6 @@
 */
 #pragma once
 
-#include "PCH.hpp"
-
 #include "Timer.hpp"
 #include "Single.hpp"
 
@@ -25,21 +23,21 @@ public:
 
 	/* Returns the time elapsed since application start, in seconds. Updated once per frame.
 	*/
-	float32 GetTime() const;
+	float32 SinceAppStart() const;
 	/* Returns the time elapsed since application start, in milliseconds. Updated once per frame.
 	*/
-	uint64 GetTimeMs() const;
+	uint64 SinceAppStartMs() const;
 	/* Returns the precise time since application start, in microseconds. Unlike other time methods this is not only
 	  updated every frame, but will return exact time at the moment it is called.
 	*/
-	uint64 GetTimePrecise() const;
+	uint64 SinceAppStartPrecise() const;
 
 	/* Returns the time since last frame was executed. Only gets updated once per frame.
 	*/
 	float32 GetFrameDelta() const;
 	/* Returns the time at which the application was started, counting from system start.
 	*/
-	uint64 GetStartTimeMs() const;
+	uint64 AppStartTimePointMs() const;
 	/* Returns time formated as:
 	  HH:MM:SS
 	  with leading zeroes.

@@ -18,17 +18,17 @@ Time::Time() :
 	Single<Time>()
 {}
 
-float32 Time::GetTime() const
+float32 Time::SinceAppStart() const
 {
 	return this->timeSinceStart;
 }
 
-uint64 Time::GetTimeMs() const
+uint64 Time::SinceAppStartMs() const
 {
 	return this->timeSinceStartMs;
 }
 
-uint64 Time::GetTimePrecise() const
+uint64 Time::SinceAppStartPrecise() const
 {
 	return this->timer.GetMicroseconds();
 }
@@ -38,7 +38,7 @@ float32 Time::GetFrameDelta() const
 	return this->frameDelta;
 }
 
-uint64 Time::GetStartTimeMs() const
+uint64 Time::AppStartTimePointMs() const
 {
 	return this->appStartTime;
 }

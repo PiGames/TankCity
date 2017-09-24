@@ -12,7 +12,7 @@ namespace con
 template <typename T, typename ...TArgs>
 inline void Logger::Log( LogLevel level, const T& val, TArgs&& ...args )
 {
-	std::string programUpTime = Time::Format( gTime().GetTimeMs() );
+	std::string programUpTime = Time::Format( gTime().SinceAppStartMs() );
 
 	auto msg = To<std::string>( "[", programUpTime, "| ", this->getLogLevelAsStr( level ), "] " );
 	msg += To<std::string>( val, std::forward<TArgs>( args )... );

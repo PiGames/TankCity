@@ -6,9 +6,9 @@
 #include <iostream>
 #include <string>
 
-#include "../../Framework/Inc/Time.hpp"
-#include "../../Framework/Inc/Timer.hpp"
-#include "../../Framework/Inc/Context.hpp"
+#include "Time.hpp"
+#include "Timer.hpp"
+#include "Context.hpp"
 
 int main()
 {
@@ -18,7 +18,7 @@ int main()
 
 	while ( true ) {
 		con::gTime()._update();
-		std::cout << con::gTime().Format( con::gTime().GetTimeMs() ) << '\r';
+		std::cout << con::gTime().Format( con::gTime().SinceAppStartMs() ) << '\r';
 	}
 	std::cin.get();
 }
