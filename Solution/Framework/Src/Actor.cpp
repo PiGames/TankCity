@@ -54,6 +54,12 @@ void Actor::_SetScene( Scene& scene_ )
 	Ensures( this->scene != nullptr );
 }
 
+void Actor::Kill()
+{
+	if ( Expects( this->scene ).Failed() )
+		this->scene->Kill( this->uniqueID );
+}
+
 void Actor::Rotate( degrees angle )
 {
 	if ( angle < -360 || angle > 360 )

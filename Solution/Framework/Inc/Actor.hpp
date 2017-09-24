@@ -34,6 +34,7 @@ public:
 	void _SetUniqueID( int32 uniqueID_ );
 	void _SetScene( Scene& scene_ );
 
+	void Kill();
 	void Rotate( degrees angle );
 	void Move( const Vec2f& force );
 
