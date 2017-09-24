@@ -2,9 +2,9 @@
 	Untitled_Guys 2017
 */
 
-#include <INIFile.hpp>
-#include <Conversions.hpp>
-#include <Debug.hpp>
+#include "INIFile.hpp"
+#include "Conversions.hpp"
+#include "Debug.hpp"
 #include <iostream>
 #include <filesystem> // delete file after test
 

@@ -49,12 +49,10 @@ inline T value( T min, Y max )
 	static_assert( std::is_integral_v<T> || std::is_floating_point_v<T> );
 	T maxCasted = To<T>( max );
 
-	if ( Expects( min < maxCasted ).Failed() ) {
+	if ( Expects( min < maxCasted ).Failed() )
 		return min;
-	}
-	if ( Expects( min != maxCasted ).Failed() ) {
+	if ( Expects( min != maxCasted ).Failed() )
 		return min;
-	}
 
 	if constexpr ( std::is_integral_v<T> )
 	{

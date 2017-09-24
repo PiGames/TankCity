@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-#include "../../Framework/Inc/Debug.hpp"
+#include "Debug.hpp"
 
 int main()
 {

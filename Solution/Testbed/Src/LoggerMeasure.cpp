@@ -6,8 +6,8 @@
 #include <iostream>
 #include <fstream>
 
-#include "../../Framework/Inc/Logger.hpp"
-#include "../../Framework/Inc/Debug.hpp"
+#include "Logger.hpp"
+#include "Debug.hpp"
 
 static void Init()
 {

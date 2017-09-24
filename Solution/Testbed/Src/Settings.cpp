@@ -1,11 +1,10 @@
 /*
 	Untitled_Guys 2017
-	https://github.com/UntitledGuys/
 */
 
-#include <Settings.hpp>
-#include <Debug.hpp>
-#include <Logger.hpp>
+#include "Settings.hpp"
+#include "Debug.hpp"
+#include "Logger.hpp"
 
 #include <iostream>
 #include <filesystem> // delete file after test

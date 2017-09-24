@@ -3,8 +3,8 @@
 	https://github.com/condzi
 */
 
-#include "../../Framework/Inc/Math.hpp"
-#include "../../Framework/Inc/Debug.hpp"
+#include "Math.hpp"
+#include "Debug.hpp"
 #include <iostream>
 
 static void Init()

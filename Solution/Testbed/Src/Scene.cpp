@@ -47,7 +47,7 @@ int main()
 	window.setFramerateLimit( 60 );
 	sf::Event ev;
 
-	Scene scene( 5 ); // should warn, given value smaller or equal to 1.
+	Scene scene( 1 ); // should warn, given value smaller or equal to 1.
 
 	auto& pawn1 = scene.Spawn<Pawn>();
 	auto& pawn2 = scene.Spawn<Pawn>(); // should warn about resizing to value bigger than reserved
