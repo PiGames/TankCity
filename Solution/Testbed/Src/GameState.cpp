@@ -43,7 +43,7 @@ class StateA final :
 		}
 
 		if ( switchThreadTimer.GetMilliseconds() > 1000 )
-			con::gMessenger().Add<con::statePushMessage_t>( con::To<con::stateID>( state_t::StateB ),
+			con::gMessenger().Add<con::statePushMessage>( con::To<con::stateID>( state_t::StateB ),
 															con::To<con::int16>( con::frameworkMessages_t::STATE_PUSH ) );
 	}
 	void UpdateThread()
@@ -84,7 +84,7 @@ class StateB final :
 		}
 
 		if ( switchThreadTimer.GetMilliseconds() > 1000 )
-			con::gMessenger().Add<con::exitMessage_t>( {}, con::To<con::int16>( con::frameworkMessages_t::EXIT ) );
+			con::gMessenger().Add<con::exitMessage>( {}, con::To<con::int16>( con::frameworkMessages_t::EXIT ) );
 	}
 	void UpdateThread()
 	{

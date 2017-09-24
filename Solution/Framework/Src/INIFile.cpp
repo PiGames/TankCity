@@ -41,12 +41,11 @@ bool INIFile::Open( const std::string& name )
 
 bool INIFile::Save( const std::string& path, bool override )
 {
-	if ( Expects( !this->pathToFile.empty() && !this->parsedData.empty() ).Failed() ) {
-		return false;
-	}
-
 	if ( !path.empty() )
 		this->pathToFile = path;
+
+	if ( Expects( !this->pathToFile.empty() && !this->parsedData.empty() ).Failed() )
+		return false;
 
 	std::vector<std::string> serializeData;
 	this->makeSerializeData( serializeData );

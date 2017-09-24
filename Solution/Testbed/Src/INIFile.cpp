@@ -1,6 +1,5 @@
 /*
 	Untitled_Guys 2017
-	https://github.com/UntitledGuys/
 */
 
 #include <INIFile.hpp>
@@ -54,12 +53,14 @@ void Open()
 	INIFile file;
 	file.Open( FILE_PATH );
 	file.Parse();
+	std::string fuck = "fucking fuck";
+	auto fucks = std::ref( fuck );
 
-	LOG_INFO( "INTS | int8: ", file.GetValue( "INTS", "int8" ).value().get() );
-	LOG_INFO( "INTS | int16: ", file.GetValue( "INTS", "int16" ).value().get() );
-	LOG_INFO( "INTS | int32: ", file.GetValue( "INTS", "int32" ).value().get() );
-	LOG_INFO( "INTS | int64: ", file.GetValue( "INTS", "int64" ).value().get() );
-	LOG_INFO( "OTHERS | float32: ", file.GetValue( "OTHERS", "float32" ).value().get() );
-	LOG_INFO( "OTHERS | float64: ", file.GetValue( "OTHERS", "float64" ).value().get() );
-	LOG_INFO( "OTHERS | bool: ", file.GetValue( "OTHERS", "bool" ).value().get() );
+	LOG_INFO( "INTS | int8: ", file.GetValue( "INTS", "int8" ).value_or( fucks ).get() );
+	LOG_INFO( "INTS | int16: ", file.GetValue( "INTS", "int16" ).value_or( fucks ).get() );
+	LOG_INFO( "INTS | int32: ", file.GetValue( "INTS", "int32" ).value_or( fucks ).get() );
+	LOG_INFO( "INTS | int64: ", file.GetValue( "INTS", "int64" ).value_or( fucks ).get() );
+	LOG_INFO( "OTHERS | float32: ", file.GetValue( "OTHERS", "float32" ).value_or( fucks ).get() );
+	LOG_INFO( "OTHERS | float64: ", file.GetValue( "OTHERS", "float64" ).value_or( fucks ).get() );
+	LOG_INFO( "OTHERS | bool: ", file.GetValue( "OTHERS", "bool" ).value_or( fucks ).get() );
 }
