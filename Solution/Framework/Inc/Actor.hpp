@@ -12,6 +12,9 @@ namespace con
 {
 class Scene;
 
+/* Basic class of objects chiearchy. You can rotate it, move and draw it.
+	It has unique id so you can use it to distinguish different Actors.
+*/
 class Actor
 {
 public:

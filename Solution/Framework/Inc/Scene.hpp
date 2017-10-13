@@ -12,6 +12,8 @@
 
 namespace con
 {
+/* Stores and manages Actors.
+*/
 class Scene
 {
 public:

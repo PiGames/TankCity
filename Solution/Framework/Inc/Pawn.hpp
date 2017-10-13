@@ -10,6 +10,8 @@ namespace con
 {
 class PawnController;
 
+/* It's extended Actor - you can controll it using PawnController.
+*/
 class Pawn :
 	public Actor
 {
